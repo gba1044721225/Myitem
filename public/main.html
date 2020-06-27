@@ -1,0 +1,395 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script>
+        // var data = [
+        //     {
+        //         mname: "鬼灭之刃",
+        //         collect
+        //     }
+        // ]
+        function loadmusic() {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = () => {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    var xt = xhr.responseText;
+                    var jxt = JSON.parse(xt);
+                    console.log(jxt);
+                    var str = '<ul style="list-style: none;padding:0">';
+                    for (var i = 0; i < jxt.length; i++) {
+                        console.log(jxt[i].msrc, typeof(jxt[i].msrc))
+                        str += `
+                        <li><a href="javascript:pl('${jxt[i].msrc}')">${jxt[i].mname}</a></li>
+                        `
+                    }
+                    str += '</ul>';
+                    mbody.innerHTML = str;
+                }
+            }
+            xhr.open('get', `/pro/v1/mlist`, true);
+            xhr.send();
+
+        }
+
+        function pl(a) {
+            music.style.display = 'block';
+            console.log(a);
+            vd.src = a;
+            console.log(vd.src);
+            vd.play();
+        }
+
+        /* 点赞 */
+        function collect() {
+
+        }
+
+        function usrlogin() {
+
+        }
+    </script>
+    <style>
+        body {
+            background: url(img/newbg.jpg) no-repeat center;
+            background-size: cover;
+            height: 662px;
+        }
+        
+        .my_bg {
+            width: 1100px;
+            height: 550px;
+            position: absolute;
+            top: 50px;
+            left: 135px;
+            top: 50%;
+            left: 50%;
+            margin-top: -275px;
+            margin-left: -550px;
+            z-index: 2;
+        }
+        
+        .my_left {
+            background-color: rgba(255, 255, 255, .6);
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+        }
+        
+        .my_right {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            background-color: #f1f3f4;
+        }
+        
+        .circle {
+            width: 15px;
+            height: 15px;
+            display: inline-block;
+            border-radius: 50%;
+            margin: 20px 0 0 5px;
+        }
+        
+        a {
+            font-size: 13px;
+        }
+        
+        .one,
+        .two,
+        .three,
+        .four,
+        .five,
+        .six,
+        .seven,
+        .my_inp {
+            background: url(img/small_icon/find.png) no-repeat left;
+            background-size: 20%;
+            margin: 10px 0 0 10px;
+        }
+        
+        .one_link,
+        .two_link,
+        .three_link {
+            margin: 5px 0 0 35px;
+        }
+        
+        .two_link {
+            margin-top: 2px
+        }
+        
+        .three_link {
+            margin: 1px 0 0 32px;
+        }
+        
+        .two {
+            background-image: url(img/small_icon/fm.png);
+        }
+        
+        .three {
+            background-image: url(img/small_icon/mv.png);
+            background-size: 22%;
+            margin-left: 13px;
+        }
+        
+        .four {
+            background-image: url(img/small_icon/itunes.png);
+            background-size: 22%;
+        }
+        
+        .five {
+            background-image: url(img/small_icon/load.png);
+        }
+        
+        .six,
+        .seven {
+            background-image: url(img/small_icon/singer.png);
+            background-size: 28%;
+        }
+        
+        .seven {
+            background-image: url(img/small_icon/radio.png);
+        }
+        
+        .my_inp {
+            background-image: url(img/small_icon/search.png);
+            margin: 30px 0 0 20px;
+            width: 350px;
+            background-size: 11%;
+            padding-left: 40px;
+        }
+        
+        img {
+            width: 120px;
+            height: 120px;
+            border-radius: 10px;
+        }
+        /* 播放器部分 */
+        
+        #music {
+            background-color: transparent !important;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            position: absolute;
+            top: 150px;
+            left: 0px;
+            z-index: 0;
+        }
+        
+        video {
+            background-color: transparent !important;
+            outline: none;
+            width: 800px;
+        }
+        
+        #bg {
+            position: absolute;
+            top: 370px;
+            left: 790px;
+            margin-top: -9px;
+        }
+        
+        #bg>#img>img {
+            width: 25px;
+            height: 25px;
+        }
+        
+        #mbody {
+            position: absolute;
+            z-index: 2;
+        }
+        /*#bg>#img:hover img {
+            transform: scale(1.2);
+        } */
+        
+        #login_list {
+            width: 334px;
+            height: 273px;
+            border: 1px solid #aaa;
+            border-radius: 3px;
+            position: absolute;
+            left: 31%;
+            top: 24%;
+            background-color: rgba(255, 255, 255, 1);
+            z-index: 5;
+            box-shadow: 0px 0px 4px 2px #ddd;
+        }
+        
+        .bglogin,
+        .bgregist {
+            text-align: center;
+            flex: 1;
+            color: #888;
+        }
+        
+        .bglogin:hover,
+        .bgregist:hover {
+            color: black;
+        }
+        
+        .user_login_regist {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+            height: 50px;
+            line-height: 50px;
+        }
+        
+        #uname,
+        #upwd {
+            width: 284px;
+            padding: 10px;
+            outline: none;
+        }
+        
+        .inp_list {
+            width: 284px;
+            margin: 10px auto;
+        }
+        
+        .next_list>input {
+            width: 20px;
+            height: 20px;
+            border-radius: 2px;
+            vertical-align: middle;
+        }
+        
+        .next_list {
+            margin: 0 0 10px 25px;
+        }
+        
+        .next_list>a {
+            margin-left: 100px;
+        }
+        
+        .btn_list {
+            width: 284px;
+            /* padding: 0 5px; */
+            margin: 0 auto 35px;
+        }
+        
+        .btn_list>button {
+            width: 284px;
+            height: 40px;
+            background-color: #17e;
+            border: none;
+            outline: none;
+            color: white;
+            border-radius: 5px;
+        }
+        
+        .btn_list>button:hover {
+            background-color: #18f;
+            cursor: pointer;
+        }
+        
+        .btn_list>button:active {
+            box-shadow: 0 0 3px 0px #18e;
+        }
+    </style>
+</head>
+
+<body onload="loadmusic()">
+    <div class="container-fluid">
+        <div class="row no-gutters my_bg">
+            <div class="col-lg-2 my_left">
+                <span class="bg-danger circle"></span>
+                <span class="bg-warning circle"></span>
+                <span class="bg-success circle"></span>
+                <ul class="nav">
+                    <li class="nav-item"><a class="nav-link p-0 text-muted mt-4 ml-3" href="#">Welcome to listen</a></li>
+                    <li class="nav-item one"><a class="nav-link p-0 text-muted one_link" href="#">Music Searching</a></li>
+                    <li class="nav-item two"><a class="nav-link p-0 text-muted two_link" href="#">Music Station</a></li>
+                    <li class="nav-item three"><a class="nav-link p-0 text-muted three_link" href="#">radio MV</a></li>
+                </ul>
+
+                <ul class="nav">
+                    <li class="nav-item">
+                        <a class="nav-link p-0 text-muted mt-4 ml-3" href="#">Mine</a>
+                    </li>
+                    <li class="nav-item four"><a class="nav-link p-0 text-muted two_link" href="#">The Music List</a></li>
+                    <li class="nav-item five"><a class="nav-link p-0 text-muted two_link" href="#">Style</a></li>
+                    <li class="nav-item six"><a class="nav-link p-0 text-muted two_link" href="#">Singer</a></li>
+                    <li class="nav-item seven"><a class="nav-link p-0 text-muted two_link" href="#" id="login" onclick="usrlogin()">Sign in</a></li>
+                </ul>
+            </div>
+            <div class="col-lg-10  my_right">
+                <input type="search" class="my_inp form-control" placeholder="Search singer\music">
+                <h3 class="mt-4 ml-3">Recommend</h3>
+                <div class="d-flex text-center mt-3">
+                    <div class="mx-4" style="margin-left: 55px !important;"><img src="img/01.jpeg" alt="图片加载失败">
+                        <p>Future Bass</p>
+                    </div>
+                    <div class="mx-4"><img src="img/02.jpeg" alt="图片加载失败">
+                        <p>Euphoric Hardstyle</p>
+                    </div>
+                    <div class="mx-4"><img src="img/03.jpeg" alt="图片加载失败">
+                        <p>Best EDM</p>
+                    </div>
+                    <div class="mx-4"><img src="img/04.jpeg" alt="图片加载失败">
+                        <p>Never Say Die</p>
+                    </div>
+                    <div class="mx-4"><img src="img/04.jpeg" alt="图片加载失败">
+                        <p>Never Say Die</p>
+                    </div>
+                </div>
+                <div class="row no-gutters">
+                    <div class="col-lg-6">
+                        <h3 class="ml-3">New Song</h3>
+
+                    </div>
+                    <div class="col-lg-6">
+                        <h3>Play List</h3>
+                    </div>
+                </div>
+
+                <!-- 音乐模块 -->
+                <div id="section">
+                    <div id="music" style="display: none;">
+                        <video controls="controls" id="vd"></video>
+                        <div id="bg">
+                            <div id="img" onclick="collect()">
+                                <img src="./pic/1.png" alt="">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="login_list" onclick="usrlogin()">
+                        <div class="user_login_regist">
+                            <div class="bglogin">登录</div>
+                            <div class="bgregist">注册</div>
+                        </div>
+                        <div class="inp_list">
+                            <input type="text" name="" id="uname">
+                        </div>
+                        <div class="inp_list">
+                            <input type="password" name="" id="upwd">
+                        </div>
+                        <div class="next_list">
+                            <input type="checkbox" name="" id="next">
+                            <span>下次自动登录</span>
+                            <a href="">忘了密码?</a>
+                        </div>
+                        <div class="btn_list">
+                            <button>登录</button>
+                        </div>
+                    </div>
+
+                    <div id="mbody">
+
+                    </div>
+
+                    <div id="mfoot">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

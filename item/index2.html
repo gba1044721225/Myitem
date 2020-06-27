@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #section {
+            width: 1000px;
+            height: 300px;
+            position: relative;
+            perspective: 900px;
+        }
+        
+        #container {
+            transform-style: preserve-3d;
+            /* transform: rotateY(-40deg); */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 128px;
+            height: 100px;
+        }
+        
+        img {
+            width: 128px;
+            height: 128px;
+            position: absolute;
+        }
+        
+        img:nth-child(1) {
+            transform: rotateY(0deg) translatez(200px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+        }
+        
+        img:nth-child(2) {
+            transform: rotateY(40deg) translatez(200px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+        }
+        
+        img:nth-child(3) {
+            transform: rotateY(80deg) translatez(200px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+        }
+        
+        img:nth-child(4) {
+            transform: rotateY(120deg) translatez(200px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+        }
+        
+        img:nth-child(5) {
+            transform: rotateY(160deg) translatez(200px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+        }
+        
+        img:nth-child(6) {
+            transform: rotateY(200deg) translatez(200px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+        }
+        
+        img:nth-child(7) {
+            transform: rotateY(240deg) translatez(200px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+        }
+        
+        img:nth-child(8) {
+            transform: rotateY(280deg) translatez(200px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+        }
+        
+        img:nth-child(9) {
+            transform: rotateY(320deg) translatez(200px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, .5);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="section">
+        <div id="container">
+            <img src="./1.jpg" alt="">
+            <img src="./2.jpg" alt="">
+            <img src="./3.jpg" alt="">
+            <img src="./4.jpg" alt="">
+            <img src="./5.jpg" alt="">
+            <img src="./6.jpg" alt="">
+            <img src="./7.jpg" alt="">
+            <img src="./8.jpg" alt="">
+            <img src="./9.jpg" alt="">
+        </div>
+    </div>
+</body>
+
+</html>
